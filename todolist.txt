@@ -1,0 +1,57 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+todo:
+
+	*	Create UserInput class, reading user input	(30 mins)  DONE
+	*	Create CurveEasing class [not implemented]	(5 mins)   DONE
+	*	Create IUserInput & Factory?			(15 mins)
+	*	Create test environment				(15 mins)
+	*	Create tests					(30 mins)
+	*	Implement CurveEasing class			(30 mins)
+	EXTRAS:
+	*	Implement logging
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Architecture:
+
+classes:
+	UserInput
+	Curve definitions
+	
+
+
+Main:
+	*	Read input file
+	*	Parse using Regex & sort into two categories
+			- Parameters & current Times
+			- Regex can search through all curve names
+	*	if(Parameters)
+		-	Retrieve curve & input parameters
+		-	Store function in "lastReadFunction" field
+		-	Next time currentTime comes along, input it into function
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Main pseudo:
+
+while(canReadFile)
+{
+	// type indicates if it's a function or a time
+	UserInput.ReadLine();
+	
+	if(UserInput is time)
+	{
+		if(lastInputtedFunction != null)
+		{
+			evaluate function
+		}
+	}
+	else if(UserInput is function
+		
+}
+
+UserInput:
+(extra)
+Skip any invalid lines & build log to output at the end.
+
+
+API:
+
