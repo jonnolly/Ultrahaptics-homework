@@ -148,7 +148,6 @@
     <ClInclude Include="UserInput.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CurveFunctions.cpp" />
     <ClCompile Include="EasingCurves.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

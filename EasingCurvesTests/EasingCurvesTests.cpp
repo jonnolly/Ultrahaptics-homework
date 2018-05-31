@@ -6,7 +6,6 @@
 
 #include "stdafx.h"
 
-
 int main()
 {
     return 0;
@@ -15,7 +14,7 @@ int main()
 void GivenUserInputIsInvalid_WhenApplicationRuns_LineIsIgnoredAndApplicationContinues()
 {
 	// Arrange
-
+		
 	// Act
 
 	// Assert

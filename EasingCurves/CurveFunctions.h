@@ -6,38 +6,42 @@ namespace EasingCurves
 	class ICurveFunction
 	{
 	public:
-		virtual float CurveFunction(float x_t0, float x_tMax, float duration) = 0;
+		virtual float CurveFunction(float x_t0, float x_tMax, float duration, float time) = 0;
 	};
 
 	class LinearFunction : ICurveFunction
 	{
 	public:
-		// todo:
-		// do i need to explicitly define these functions?
-		float CurveFunction(float x_t0, float x_tMax, float duration);
+		float CurveFunction(float x_t0, float x_tMax, float duration, float time)
+		{
+			return x_t0 + ((time * (x_tMax - x_t0)) / duration);
+		}
 	};
 
 	class InQuadFunction : ICurveFunction
 	{
 	public:
-		// todo:
-		// do i need to explicitly define these functions?
-		float CurveFunction(float x_t0, float x_tMax, float duration);
+		float CurveFunction(float x_t0, float x_tMax, float duration, float time)
+		{
+			return 0;
+		}
 	};
 
 	class OutQuadFunction : ICurveFunction
 	{
 	public:
-		// todo:
-		// do i need to explicitly define these functions?
-		float CurveFunction(float x_t0, float x_tMax, float duration);
+		float CurveFunction(float x_t0, float x_tMax, float duration, float time)
+		{
+			return 0;
+		}
 	};
 
 	class InOutQuadFunction : ICurveFunction
 	{
 	public:
-		// todo:
-		// do i need to explicitly define these functions?
-		float CurveFunction(float x_t0, float x_tMax, float duration);
+		float CurveFunction(float x_t0, float x_tMax, float duration, float time)
+		{
+			return 0;
+		}
 	};
 }
