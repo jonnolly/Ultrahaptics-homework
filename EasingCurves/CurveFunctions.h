@@ -43,7 +43,7 @@ namespace EasingCurves
 		float CurveFunction(const float& x_t0, const float& x_tMax, const float& duration, const float& time)
 		{
 			timeFunctionResult = pow(time, 0.5);
-			return CurveFunction(x_t0, x_tMax, duration, timeFunctionResult);
+			return ICurveFunction::CurveFunction(x_t0, x_tMax, duration, timeFunctionResult);
 		}
 	};
 
@@ -53,14 +53,14 @@ namespace EasingCurves
 		float CurveFunction(const float& x_t0, const float& x_tMax, const float& duration, const float& time)
 		{
 			auto halfwayPoint = duration / 2;
-			float timeFunction;
+			timeFunctionResult;
 
 			if (time < halfwayPoint)
-				timeFunction = pow(time, 2);
+				timeFunctionResult = pow(time, 2);
 			else
-				timeFunction = pow(time, 0.5);
+				timeFunctionResult = pow(time, 0.5);
 
-			return CurveFunction(x_t0, x_tMax, duration, timeFunctionResult);
+			return ICurveFunction::CurveFunction(x_t0, x_tMax, duration, timeFunctionResult);
 		}
 	};
 

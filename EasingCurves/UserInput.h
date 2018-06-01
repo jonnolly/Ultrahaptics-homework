@@ -4,6 +4,7 @@
 #include <functional>
 #include "CurveFunctions.h"
 #include <memory>
+#include <vector>
 
 namespace EasingCurves
 {
@@ -12,6 +13,7 @@ namespace EasingCurves
 	public:
 
 		enum InputType { TimeValue, CurveFunction, Circle, Invalid };
+		static std::vector<std::string> GetUserInputs(std::string filePath);
 		static InputType GetInputType(const std::string& fileLine);
 		static std::function<float(float)> GetCurveFunction(const std::string& fileLine);
 		static std::function<std::pair<float, float>(float)> GetCircleFunction(const std::string& fileLine);

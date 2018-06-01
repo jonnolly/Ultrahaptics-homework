@@ -4,9 +4,37 @@
 #include <string>
 #include <stdlib.h>
 #include <sstream>
+#include <fstream>
 
 using namespace EasingCurves;
 using namespace std;
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+std::vector<std::string> UserInput::GetUserInputs(std::string filePath)
+{
+	ifstream inputFile(filePath);
+	std::vector<std::string> userInputs;
+	try
+	{
+		string line;
+		if (inputFile.is_open())
+		{
+			while (getline(inputFile, line))
+			{
+				userInputs.push_back(line);
+			}
+			inputFile.close();
+		}
+	}
+
+	catch (...)
+	{
+		inputFile.close();
+		throw new exception("Error reading file. Please consult EasingCurves guide for info on format.");
+	}
+
+	return userInputs;
+}
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 UserInput::InputType UserInput::GetInputType(const std::string& fileLine)

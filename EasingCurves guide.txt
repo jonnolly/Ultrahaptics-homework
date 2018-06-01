@@ -1,4 +1,6 @@
-Please enter using the following format:
+Drag your config file on top of the EasingCurves.exe.
+
+Your config file must have the following format:
 
 for curves:
 [curveType],x_t0=[value],x_tmax=[value],duration=[value]
@@ -7,7 +9,7 @@ for curves:
 0.9
 
 where curveType can be "Linear", "InQuad", "OutQuad" or "InOutQuad"
-and the three tailing values can be any value you please.
+and any number of tailing values of any number, representing seconds since start
 
 for circles:
 radius=[value],theta_t0=[value],theta_tmax=[value],duration=[value]
@@ -15,4 +17,4 @@ radius=[value],theta_t0=[value],theta_tmax=[value],duration=[value]
 0.6
 0.9
 
-where the three tailing values can be any value you please.
+and any number of tailing values of any number, representing seconds since start
