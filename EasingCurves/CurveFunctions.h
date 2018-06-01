@@ -1,47 +1,80 @@
 #pragma once
 
+#include <math.h>
 
+// todo: use the same method with only time functions changing
 namespace EasingCurves
 {
 	class ICurveFunction
 	{
 	public:
-		virtual float CurveFunction(float x_t0, float x_tMax, float duration, float time) = 0;
+		virtual float CurveFunction(const float& x_t0, const float& x_tMax, const float& duration, const float& time)
+		{
+			return x_t0 + ((timeFunctionResult * (x_tMax - x_t0)) / duration);
+		}
+
+	protected:
+		float timeFunctionResult;
 	};
 
-	class LinearFunction : ICurveFunction
+	class LinearFunction : public ICurveFunction
 	{
 	public:
-		float CurveFunction(float x_t0, float x_tMax, float duration, float time)
+		float CurveFunction(const float& x_t0, const float& x_tMax, const float& duration, const float& time)
 		{
-			return x_t0 + ((time * (x_tMax - x_t0)) / duration);
+			timeFunctionResult = time;
+			return ICurveFunction::CurveFunction(x_t0, x_tMax, duration, timeFunctionResult);
 		}
 	};
 
-	class InQuadFunction : ICurveFunction
+	class InQuadFunction : public ICurveFunction
 	{
 	public:
-		float CurveFunction(float x_t0, float x_tMax, float duration, float time)
+		 float CurveFunction(const float& x_t0, const float& x_tMax, const float& duration, const float& time) override
+		 {
+			 timeFunctionResult = pow(time, 2);
+			 return  ICurveFunction::CurveFunction(x_t0, x_tMax, duration, timeFunctionResult);
+		 }
+	};
+
+	class OutQuadFunction : public ICurveFunction
+	{
+	public:
+		float CurveFunction(const float& x_t0, const float& x_tMax, const float& duration, const float& time)
 		{
-			return 0;
+			timeFunctionResult = pow(time, 0.5);
+			return CurveFunction(x_t0, x_tMax, duration, timeFunctionResult);
 		}
 	};
 
-	class OutQuadFunction : ICurveFunction
+	class InOutQuadFunction : public ICurveFunction
 	{
 	public:
-		float CurveFunction(float x_t0, float x_tMax, float duration, float time)
+		float CurveFunction(const float& x_t0, const float& x_tMax, const float& duration, const float& time)
 		{
-			return 0;
+			auto halfwayPoint = duration / 2;
+			float timeFunction;
+
+			if (time < halfwayPoint)
+				timeFunction = pow(time, 2);
+			else
+				timeFunction = pow(time, 0.5);
+
+			return CurveFunction(x_t0, x_tMax, duration, timeFunctionResult);
 		}
 	};
 
-	class InOutQuadFunction : ICurveFunction
+	// Circle function is similar to the other curve functions, but gives different outputs. Therefore it does not inherit from ICurveFunction
+	class CircleFunction
 	{
 	public:
-		float CurveFunction(float x_t0, float x_tMax, float duration, float time)
+		std::pair<float, float> GetCurrentXY(const float& radius, const float& theta_t0, const float& theta_tMax, const float& duration, const float& time)
 		{
-			return 0;
+			LinearFunction linearFunction;
+			auto currentTheta = linearFunction.CurveFunction(theta_t0, theta_tMax, duration, time);
+			auto xPosition = radius * cos(currentTheta);
+			auto yPosition = radius * sin(currentTheta);
+			return std::make_pair(xPosition, yPosition);
 		}
 	};
 }

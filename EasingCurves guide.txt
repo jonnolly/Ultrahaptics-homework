@@ -1,0 +1,18 @@
+Please enter using the following format:
+
+for curves:
+[curveType],x_t0=[value],x_tmax=[value],duration=[value]
+0.1
+0.6
+0.9
+
+where curveType can be "Linear", "InQuad", "OutQuad" or "InOutQuad"
+and the three tailing values can be any value you please.
+
+for circles:
+radius=[value],theta_t0=[value],theta_tmax=[value],duration=[value]
+0.1
+0.6
+0.9
+
+where the three tailing values can be any value you please.
